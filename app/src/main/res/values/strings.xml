@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">DAT</string>
+
+    <string name="DAT">Discusión Anónima Temporal</string>
+    <string name="about">About</string>
+</resources>
