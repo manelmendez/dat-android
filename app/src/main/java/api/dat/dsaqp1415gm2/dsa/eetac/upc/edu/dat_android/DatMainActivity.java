@@ -38,6 +38,7 @@ public class DatMainActivity extends ActionBarActivity{
         toolbar.setTitle("DAT");
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
         //añado el drawer (menu lateral)
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         listView = (ListView) findViewById(R.id.list_view);
@@ -62,29 +63,38 @@ public class DatMainActivity extends ActionBarActivity{
         customButton = (Button)findViewById(R.id.bt1);
         Typeface font = Typeface.createFromAsset(getAssets(),"BAUHS93.TTF");
         customButton.setTypeface(font);
-        customButton.setShadowLayer(5, 3, 3, Color.WHITE);
+        customButton.setShadowLayer(35, 0, 0, Color.WHITE);
         //repito con los demas (la fuente ahora esta en la variable "font")
         customButton = (Button)findViewById(R.id.bt2);
         customButton.setTypeface(font);
-        customButton.setShadowLayer(5, 3, 3, Color.WHITE);
+        customButton.setShadowLayer(35, 0, 0, Color.WHITE);
         customButton = (Button)findViewById(R.id.bt3);
         customButton.setTypeface(font);
-        customButton.setShadowLayer(5, 3, 3, Color.WHITE);
+        customButton.setShadowLayer(35, 0, 0, Color.WHITE);
         customButton = (Button)findViewById(R.id.bt4);
         customButton.setTypeface(font);
-        customButton.setShadowLayer(5, 3, 3, Color.WHITE);
+        customButton.setShadowLayer(35, 0, 0, Color.WHITE);
 
     }
     private class DrawerItemClickListener implements ListView.OnItemClickListener {
         @Override
         public void onItemClick(AdapterView arg0, View arg1, int arg2,
                                 long arg3) {
-            Toast.makeText(DatMainActivity.this, "Item: " + titulos[arg2],
+            Toast.makeText(DatMainActivity.this, "Item: " + titulos[arg2-1],
                     Toast.LENGTH_SHORT).show();
             drawerLayout.closeDrawers();
         }
     }
-
+    //metodo para cerrar el drawer al pulsar el boton de ATRAS
+    @Override
+    public void onBackPressed(){
+        if(drawerLayout.isDrawerOpen(listView)){ //replace this with actual function which returns if the drawer is open
+            drawerLayout.closeDrawers();     // replace this with actual function which closes drawer
+        }
+        else{
+            super.onBackPressed();
+        }
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
